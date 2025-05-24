@@ -4,20 +4,22 @@ function getComputerChoice() {
   const choices = ["stone", "paper", "scissors"];
   let random = Math.floor(Math.random() * choices.length);
   return choices[random];
+  /*
+  let max = 3;
+  let min = 1;
+  let random = Math.floor(Math.random() * (max - min + 1)) + min;
+  if (random == 1) return "stone";
+  else if (random == 2) return "paper";
+  else return "scissors";
+  */
 }
-
 function getHumanChoice() {
-  const validChoices = ["stone", "paper", "scissors"];
-  let userChoice = prompt(
-    "Please enter your choice (Stone / Paper / Scissors):"
-  )
+  let userChoice = prompt("Please enter your choice(Stone / Paper / Scissors):")
     .toLowerCase()
     .trim();
-
+  const validChoices = ["stone", "paper", "scissors"];
   while (!validChoices.includes(userChoice)) {
-    userChoice = prompt(
-      "Invalid input. Please enter Stone / Paper / Scissors:\n"
-    )
+    userChoice = prompt("Invalid input, Please enter Stone / Paper / Scissors:")
       .toLowerCase()
       .trim();
   }
@@ -30,22 +32,29 @@ function playRound(humanChoice, computerChoice) {
 
   let computerScore = 0;
   let humanScore = 0;
-
-  if (humanChoice === computerChoice) {
-    // draw, do nothing
-  } else if (
-    (humanChoice === "stone" && computerChoice === "scissors") ||
-    (humanChoice === "paper" && computerChoice === "stone") ||
-    (humanChoice === "scissors" && computerChoice === "paper")
-  ) {
-    humanScore++;
-  } else {
-    computerScore++;
+  if (humanChoice == "stone") {
+    if (computerChoice == "paper") {
+      computerScore++;
+    } else if (computerChoice == "scissors") {
+      humanScore++;
+    }
   }
-
+  if (humanChoice == "paper") {
+    if (computerChoice == "scissors") {
+      computerScore++;
+    } else if (computerChoice == "stone") {
+      humanScore++;
+    }
+  }
+  if (humanChoice == "scissors") {
+    if (computerChoice == "paper") {
+      humanScore++;
+    } else if (computerChoice == "stone") {
+      computerScore++;
+    }
+  }
   console.log("Human Score: ", humanScore);
   console.log("Computer Score: ", computerScore);
-
   if (computerScore > humanScore) {
     console.log("Computer is the winner");
   } else if (humanScore > computerScore) {
@@ -55,6 +64,6 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
+const humanChoice = getHumanChoice().toLowerCase();
+const computerChoice = getComputerChoice().toLowerCase();
 playRound(humanChoice, computerChoice);
