@@ -4,14 +4,6 @@ function getComputerChoice() {
   const choices = ["stone", "paper", "scissors"];
   let random = Math.floor(Math.random() * choices.length);
   return choices[random];
-  /*
-  let max = 3;
-  let min = 1;
-  let random = Math.floor(Math.random() * (max - min + 1)) + min;
-  if (random == 1) return "stone";
-  else if (random == 2) return "paper";
-  else return "scissors";
-  */
 }
 function getHumanChoice() {
   let userChoice = prompt("Please enter your choice(Stone / Paper / Scissors):")
