@@ -1,27 +1,32 @@
-const prompt = require("prompt-sync")({ sigint: true });
+//const prompt = require("prompt-sync")({ sigint: true });
 
 function getComputerChoice() {
   const choices = ["stone", "paper", "scissors"];
   let random = Math.floor(Math.random() * choices.length);
   return choices[random];
 }
-function getHumanChoice() {
-  let userChoice = prompt("Please enter your choice(Stone / Paper / Scissors):")
-    .toLowerCase()
-    .trim();
-  const validChoices = ["stone", "paper", "scissors"];
-  while (!validChoices.includes(userChoice)) {
-    userChoice = prompt("Invalid input, Please enter Stone / Paper / Scissors:")
-      .toLowerCase()
-      .trim();
+
+let humanResponse = document.querySelector(".container");
+humanResponse.addEventListener("click", (event) => {
+  let target = event.target.id;
+  let computerChoice = getComputerChoice();
+  if (target) {
+    let result = playRound(target, computerChoice);
+    let resultContainer = document.createElement("div");
+    resultContainer.textContent = "The winner is: " + result;
+    humanResponse.appendChild(resultContainer);
+    console.log("The winner is: ", result);
   }
-  return userChoice;
-}
+});
 
 function playRound(humanChoice, computerChoice) {
-  console.log("------Human Choice------->", humanChoice);
-  console.log("------Computer Choice------->", computerChoice);
-
+  let winner;
+  console.log(
+    "Computer choice: ",
+    computerChoice,
+    "\n Human Choice: ",
+    humanChoice
+  );
   let computerScore = 0;
   let humanScore = 0;
   if (humanChoice == "stone") {
@@ -48,14 +53,16 @@ function playRound(humanChoice, computerChoice) {
   console.log("Human Score: ", humanScore);
   console.log("Computer Score: ", computerScore);
   if (computerScore > humanScore) {
+    winner = "Computer";
     console.log("Computer is the winner");
   } else if (humanScore > computerScore) {
+    winner = "Human";
     console.log("Human is the winner!");
   } else {
+    winner = "none";
     console.log("Match is draw!!!");
   }
+  return winner;
 }
 
-const humanChoice = getHumanChoice().toLowerCase();
-const computerChoice = getComputerChoice().toLowerCase();
-playRound(humanChoice, computerChoice);
+let computerChoice = getComputerChoice().toLowerCase();
