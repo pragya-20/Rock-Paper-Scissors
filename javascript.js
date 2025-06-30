@@ -6,16 +6,21 @@ function getComputerChoice() {
   return choices[random];
 }
 
-let humanResponse = document.querySelector(".container");
+let container = document.querySelector(".mainContainer");
+let humanResponse = document.querySelector(".humanSection");
 humanResponse.addEventListener("click", (event) => {
   let target = event.target.id;
   let computerChoice = getComputerChoice();
   if (target) {
     let result = playRound(target, computerChoice);
-    let resultContainer = document.createElement("div");
-    resultContainer.textContent = "The winner is: " + result;
-    humanResponse.appendChild(resultContainer);
-    console.log("The winner is: ", result);
+    let div = document.createElement("div");
+    div.textContent = "The winner is: " + result;
+    div.setAttribute(
+      "style",
+      "color: yellow; background: black; font-family: verdana; font-size: 8vh"
+    );
+
+    container.appendChild(div);
   }
 });
 
