@@ -1,7 +1,5 @@
 //const prompt = require("prompt-sync")({ sigint: true });
 
-playGame();
-
 function getComputerChoice() {
   const choices = ["stone", "paper", "scissors"];
   let random = Math.floor(Math.random() * choices.length);
@@ -14,6 +12,7 @@ humanResponse.addEventListener("click", (event) => {
   let target = event.target.id;
   let computerChoice = getComputerChoice();
   if (target) {
+    console.log("Hello " + target);
     let result = playRound(target, computerChoice);
     let resultContainer = document.querySelector(".result");
     resultContainer.textContent = result;
@@ -35,7 +34,6 @@ function playRound(humanChoice, computerChoice) {
   let computerScore = 0;
   let humanScore = 0;
 
-  let winner;
   if (humanChoice == "stone") {
     if (computerChoice == "paper") {
       computerScore++;
