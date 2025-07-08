@@ -13,14 +13,12 @@ humanResponse.addEventListener("click", (event) => {
   let computerChoice = getComputerChoice();
   if (target) {
     let result = playRound(target, computerChoice);
-    let div = document.createElement("div");
-    div.textContent = "The winner is: " + result;
-    div.setAttribute(
+    let resultContainer = document.querySelector(".result");
+    resultContainer.textContent = result;
+    resultContainer.setAttribute(
       "style",
       "color: yellow; background: black; font-family: verdana; font-size: 8vh"
     );
-
-    container.appendChild(div);
   }
 });
 
@@ -58,13 +56,13 @@ function playRound(humanChoice, computerChoice) {
   console.log("Human Score: ", humanScore);
   console.log("Computer Score: ", computerScore);
   if (computerScore > humanScore) {
-    winner = "Computer";
+    winner = "Computer is the winner";
     console.log("Computer is the winner");
   } else if (humanScore > computerScore) {
-    winner = "Human";
+    winner = "Human is the winner!";
     console.log("Human is the winner!");
   } else {
-    winner = "none";
+    winner = "Match is draw!!!";
     console.log("Match is draw!!!");
   }
   return winner;
