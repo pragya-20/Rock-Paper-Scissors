@@ -1,4 +1,4 @@
-const prompt = require("prompt-sync")({ sigint: true });
+//const prompt = require("prompt-sync")({ sigint: true });
 
 playGame();
 
@@ -7,22 +7,31 @@ function getComputerChoice() {
   let random = Math.floor(Math.random() * choices.length);
   return choices[random];
 }
-function getHumanChoice() {
-  let userChoice = prompt("Please enter your choice(Stone / Paper / Scissors):")
-    .toLowerCase()
-    .trim();
-  const validChoices = ["stone", "paper", "scissors"];
-  while (!validChoices.includes(userChoice)) {
-    userChoice = prompt("Invalid input, Please enter Stone / Paper / Scissors:")
-      .toLowerCase()
-      .trim();
-  }
-  return userChoice;
-}
 
-function playRound(humanChoice, computerChoice, round) {
-  console.log("------Human Choice------->", humanChoice);
-  console.log("------Computer Choice------->", computerChoice);
+let container = document.querySelector(".mainContainer");
+let humanResponse = document.querySelector(".humanSection");
+humanResponse.addEventListener("click", (event) => {
+  let target = event.target.id;
+  let computerChoice = getComputerChoice();
+  if (target) {
+    let result = playRound(target, computerChoice);
+    let resultContainer = document.querySelector(".result");
+    resultContainer.textContent = result;
+    resultContainer.setAttribute(
+      "style",
+      "color: yellow; background: black; font-family: verdana; font-size: 8vh"
+    );
+  }
+});
+
+function playRound(humanChoice, computerChoice) {
+  let winner;
+  console.log(
+    "Computer choice: ",
+    computerChoice,
+    "\n Human Choice: ",
+    humanChoice
+  );
   let computerScore = 0;
   let humanScore = 0;
 
@@ -51,46 +60,16 @@ function playRound(humanChoice, computerChoice, round) {
   console.log("Human Score: ", humanScore);
   console.log("Computer Score: ", computerScore);
   if (computerScore > humanScore) {
-    winner = "Computer";
-    console.log("Computer is the winner for round: " + round);
+    winner = "Computer is the winner";
+    console.log("Computer is the winner");
   } else if (humanScore > computerScore) {
-    winner = "Human";
-
-    console.log("Human is the winner for round: " + round);
+    winner = "Human is the winner!";
+    console.log("Human is the winner!");
   } else {
-    winner = "None";
-    console.log("Match is draw!!! for round: ", round);
+    winner = "Match is draw!!!";
+    console.log("Match is draw!!!");
   }
   return winner;
 }
 
-function playGame() {
-  let humanChoice;
-  let computerChoice;
-  let round = 1;
-  let compScore = 0;
-  let humScore = 0;
-
-  while (round <= 5) {
-    humanChoice = getHumanChoice().toLowerCase();
-    computerChoice = getComputerChoice().toLowerCase();
-    let winner = playRound(humanChoice, computerChoice, round);
-    if (winner === "Computer") {
-      compScore++;
-    } else if (winner === "Human") {
-      humScore++;
-    }
-    round++;
-  }
-  console.log("------------Human Final score: ", humScore);
-  console.log("------------Computer Final score: ", compScore);
-
-  if (compScore > humScore) {
-    compScore++;
-    console.log("Computer is the winner");
-  } else if (humScore > compScore) {
-    console.log("Human is the winner!");
-  } else {
-    console.log("Match is draw!!!");
-  }
-}
+let computerChoice = getComputerChoice().toLowerCase();

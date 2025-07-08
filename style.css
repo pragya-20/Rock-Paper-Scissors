@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* This hides horizontal scroll */
+}
+
+.mainContainer {
+  background-color: #ffff00;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+  position: relative; /* This is important for positioning inside */
+}
+
+.reset {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: Verdana;
+  border-style: solid;
+  border-color: aqua;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+.title {
+  padding-top: 5vh;
+  font-family: Verdana;
+  font-size: 5vh;
+}
+.container {
+  display: flex;
+  flex: 1;
+}
+.container > div {
+  flex: 1;
+}
+
+.humanSection {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10vh;
+}
+.rockPaperContainer {
+  justify-content: space-around;
+}
+.computerSection {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  gap: 10vh;
+  align-items: center;
+}
+
+.humanTextElement {
+  font-family: Verdana;
+  font-size: 5vh;
+  border-radius: 1vh;
+  padding: 0.8vh 4vh 4vh 4vh;
+}
+.computerTextElement {
+  font-family: Verdana;
+  font-size: 5vh;
+  border-radius: 1vh;
+  padding: 0.8vh 4vh 0.8vh 4vh;
+  margin: 0vh 15vh 0.8vh 18vh;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+.pc {
+  width: 18vh;
+  height: 18vh;
+}
+
+.computerSide {
+  align-self: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack human and computer sections */
+  }
+
+  .stone,
+  .paper,
+  .scissors {
+    width: 70px;
+    height: 70px;
+  }
+
+  .pc {
+    width: 150px;
+    height: 150px;
+  }
+
+  .title,
+  .humanTextElement,
+  .computerTextElement {
+    font-size: 3vh;
+  }
+
+  .computerTextElement {
+    margin: 0 5vh;
+  }
+
+  .rockPaperContainer,
+  .scissorsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+}

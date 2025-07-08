@@ -4,8 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/74ffe11067.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
+    <div class="mainContainer">
+      <div class="title">Let's play</div>
+      <div class="container">
+        <div class="humanSection">
+          <div class="humanTextElement">Hey human...</div>
+          <div class="rockPaperContainer">
+            <img src="img/Stone_NoShadow.svg" class="stone" id="stone" />
+            <img src="img/blackwhitepaperstack.svg" class="paper" id="paper" />
+          </div>
+          <div class="scissorsContainer">
+            <img
+              src="img/pitr_scissors_half-open_icon.svg"
+              class="scissors"
+              id="scissors"
+            />
+          </div>
+        </div>
+        <div class="computerSection">
+          <div class="computerTextElement">I am Computer...</div>
+          <img src="img/lmproulx_computer.svg" class="pc" />
+          <input
+            class="reset"
+            type="button"
+            value="Reload the game"
+            onClick="window.location.reload()"
+          />
+        </div>
+      </div>
+      <div class="result"></div>
+    </div>
+
     <script src="javascript.js"></script>
   </body>
 </html>
